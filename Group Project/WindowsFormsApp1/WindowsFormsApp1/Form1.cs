@@ -112,12 +112,17 @@ namespace WindowsFormsApp1
         }
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
             int quanity, item;
-            if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["quanity"].Value.ToString(),
-                out quanity) && int.TryParse(dataGridView1.Rows[e.RowIndex].Cells["item"].Value.ToString(), out item))
+            if (dataGridView1.Rows[e.RowIndex].Cells["quantityColumn"]?.Value != null
+    && dataGridView1.Rows[e.RowIndex].Cells["unitPriceColumn"]?.Value != null)
             {
-                int totalEstimatedValueColumn = quanity * item;
-                dataGridView1.Rows[e.RowIndex].Cells["totalEstimatedValueColumn"].Value = totalEstimatedValueColumn.ToString();
-            }                
+                if (int.TryParse(dataGridView1.Rows[e.RowIndex].Cells[quantityColumn.Index].Value.ToString(),
+                out quanity) && int.TryParse(dataGridView1.Rows[e.RowIndex].Cells[unitPriceColumn.Index].Value.ToString(), out item))
+                {
+                    int totalEstimatedValueColumn = quanity * item;
+                    dataGridView1.Rows[e.RowIndex].Cells["totalEstimatedValueColumn"].Value = totalEstimatedValueColumn.ToString();
+                }
+            }
+                           
 
 
 
