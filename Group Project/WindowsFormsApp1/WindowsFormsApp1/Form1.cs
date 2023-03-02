@@ -82,32 +82,30 @@ namespace WindowsFormsApp1
             List<double> categoryTotals = new List<double>();
             const int categoryColumnIndex = 0;
             int categoryTotalsCounter = 0;
+            
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                
                 if (dataGridView1.Rows[i].Cells[categoryColumnIndex].Value != null && dataGridView1.Rows[i].Cells[categoryColumnIndex].Value.ToString() != "")
                 {
+                    string category = dataGridView1.Rows[i].Cells[categoryColumnIndex].Value.ToString();
+                    double total = 0;
 
-                    categoriesThatExist.Add(dataGridView1.Rows[i].Cells[categoryColumnIndex].Value.ToString());
-                }
-                if (i != 0) 
-                {
-                    if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
+                    // loop through the remaining rows to find other rows with the same category and add their total to the running total
+                    for (int j = i; j < dataGridView1.Rows.Count; j++)
                     {
-                        ++categoryTotalsCounter;
-                        categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[i].Cells[totalColumnIndex].Value));
-                    } else
-                    {
-                        categoryTotals[categoryTotalsCounter] += Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value); 
+                        if (dataGridView1.Rows[j].Cells[categoryColumnIndex].Value != null && dataGridView1.Rows[j].Cells[categoryColumnIndex].Value.ToString() == category && dataGridView1.Rows[j].Cells[totalColumnIndex].Value != null)
+                        {
+                            double.TryParse(dataGridView1.Rows[j].Cells[totalColumnIndex].Value.ToString(), out double tmpValue);
+                            total += tmpValue;
+                        }
                     }
-                 } else if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
-                {
-                    categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value));
-                } else
-                {
-                    break;
+
+                    // add the category and total to the corresponding lists
+                    categoriesThatExist.Add(category);
+                    categoryTotals.Add(total);
                 }
             }
+
             foreach (double logCategoryTotals in categoryTotals)
             {
                 Console.WriteLine(logCategoryTotals);
@@ -233,20 +231,7 @@ namespace WindowsFormsApp1
 
         }
 
-        private void clearEverythingButton_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    cell.Value = null;
-                }
-            }
-            MessageBox.Show("Are you sure?");
-
-        }
-
-        
+               
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -260,6 +245,18 @@ namespace WindowsFormsApp1
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void clearEverythingButton_Click_1(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.Value = null;
+                }
+            }
+            MessageBox.Show("Are you sure you want to clear everything!?");
         }
     }
 }

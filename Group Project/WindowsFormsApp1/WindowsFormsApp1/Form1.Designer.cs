@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.calculateButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
@@ -174,19 +174,19 @@
             // pieGraph
             // 
             this.pieGraph.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.BackSecondaryColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.pieGraph.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.pieGraph.Legends.Add(legend1);
+            chartArea2.BackSecondaryColor = System.Drawing.Color.Transparent;
+            chartArea2.Name = "ChartArea1";
+            this.pieGraph.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.pieGraph.Legends.Add(legend2);
             this.pieGraph.Location = new System.Drawing.Point(30, 401);
             this.pieGraph.Margin = new System.Windows.Forms.Padding(2);
             this.pieGraph.Name = "pieGraph";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.pieGraph.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.pieGraph.Series.Add(series2);
             this.pieGraph.Size = new System.Drawing.Size(450, 228);
             this.pieGraph.TabIndex = 7;
             this.pieGraph.Text = "chart1";
@@ -223,6 +223,7 @@
             this.clearEverythingButton.TabIndex = 10;
             this.clearEverythingButton.Text = "CLEAR EVERYTHING";
             this.clearEverythingButton.UseVisualStyleBackColor = false;
+            this.clearEverythingButton.Click += new System.EventHandler(this.clearEverythingButton_Click_1);
             // 
             // Form1
             // 
