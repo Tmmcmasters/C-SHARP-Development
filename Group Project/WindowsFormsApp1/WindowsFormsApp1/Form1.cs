@@ -81,9 +81,10 @@ namespace WindowsFormsApp1
             List<string> categoriesThatExist = new List<string>();
             List<double> categoryTotals = new List<double>();
             const int categoryColumnIndex = 0;
+            int categoryTotalsCounter = 0;
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                int categoryTotalsCounter = 0;
+                
                 if (dataGridView1.Rows[i].Cells[categoryColumnIndex].Value != null && dataGridView1.Rows[i].Cells[categoryColumnIndex].Value.ToString() != "")
                 {
 
@@ -94,14 +95,14 @@ namespace WindowsFormsApp1
                     if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
                     {
                         ++categoryTotalsCounter;
-                        categoryTotals[categoryTotalsCounter] = Convert.ToDouble(dataGridView1.Rows[i].Cells[totalColumnIndex].Value);
+                        categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[i].Cells[totalColumnIndex].Value));
                     } else
                     {
                         categoryTotals[categoryTotalsCounter] += Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value); 
                     }
                  } else if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
                 {
-                    categoryTotals[categoryTotalsCounter] = Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value);
+                    categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value));
                 } else
                 {
                     break;
