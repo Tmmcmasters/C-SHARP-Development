@@ -13,8 +13,8 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        private List<string> categories = new List<string> { "Floors", "Walls", "Roofing", "Doors", "Upholstery", "Others" };
-        
+        private List<string> categories = new List<string> { "Floors", "Walls", "Roofing", "Doors", "Upholstery", "Others", "" };
+
         public Form1()
         {
             InitializeComponent();
@@ -26,12 +26,13 @@ namespace WindowsFormsApp1
             textBox1.Hide();
 
 
-            
+
             // Adding items to the drop down list
             categoryList.Items.AddRange(categories.ToArray());
 
 
-            pieGraph.Visible= false;
+            pieGraph.Visible = false;
+
             pieGraph.Series.Clear();
             pieGraph.Titles.Clear();
 
@@ -44,7 +45,7 @@ namespace WindowsFormsApp1
             pieGraph.Series["s1"].Label = "#VALY (#PERCENT)";
 
             string[] options = categories.ToArray();
-            int[] categoryTotals = { 10, 20, 70, 88, 55, 89 };
+            int[] categoryTotals = { 10, 20, 70, 88, 55, 89, 20 };
 
 
 
@@ -53,14 +54,68 @@ namespace WindowsFormsApp1
                 pieGraph.Series["s1"].Points.AddXY(options[x], categoryTotals[x]);
                 pieGraph.Series["s1"].Points[x].LegendText = options[x];
             }
-
         }
+
+
+
 
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
             pieGraph.Visible = true;
             this.Size = new Size(715, 866);
+            //Calculates and stores the totals of all total estimated values
+            label2.Text = "0";
+            const int totalColumnIndex = 4;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                int tmpValue = 0;
+                if (dataGridView1.Rows[i].Cells[totalColumnIndex].Value != null)
+                {
+                    int.TryParse(dataGridView1.Rows[i].Cells[totalColumnIndex].Value.ToString(), out tmpValue);
+                    label2.Text = Convert.ToString(int.Parse(label2.Text) + tmpValue);
+                }
+            }
+
+            //Stores two parallel arrays for categories and category totals
+            List<string> categoriesThatExist = new List<string>();
+            List<double> categoryTotals = new List<double>();
+            const int categoryColumnIndex = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                int categoryTotalsCounter = 0;
+                if (dataGridView1.Rows[i].Cells[categoryColumnIndex].Value != null && dataGridView1.Rows[i].Cells[categoryColumnIndex].Value.ToString() != "")
+                {
+
+                    categoriesThatExist.Add(dataGridView1.Rows[i].Cells[categoryColumnIndex].Value.ToString());
+                }
+                if (i != 0) 
+                {
+                    if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
+                    {
+                        ++categoryTotalsCounter;
+                        categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[i].Cells[totalColumnIndex].Value));
+                    } else
+                    {
+                        categoryTotals[categoryTotalsCounter] += Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value); 
+                    }
+                 } else if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
+                {
+                    categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value));
+                } else
+                {
+                    break;
+                }
+            }
+            foreach (double logCategoryTotals in categoryTotals)
+            {
+                Console.WriteLine(logCategoryTotals);
+            }
+            foreach(string logActualCategories in categoriesThatExist)
+            {
+                Console.WriteLine(logActualCategories);
+            }
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -78,7 +133,7 @@ namespace WindowsFormsApp1
 
         }
 
-                  
+
 
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -104,7 +159,7 @@ namespace WindowsFormsApp1
                     textBox1.Hide();
                 }
             }
-            if (dataGridView1.Columns[e.ColumnIndex].Name.Equals("unitPriceColumn", StringComparison.OrdinalIgnoreCase)) 
+            if (dataGridView1.Columns[e.ColumnIndex].Name.Equals("unitPriceColumn", StringComparison.OrdinalIgnoreCase))
             {
                 // Tries to parse the entered value as a number
 
@@ -157,13 +212,13 @@ namespace WindowsFormsApp1
                     dataGridView1.Rows[e.RowIndex].Cells["totalEstimatedValueColumn"].Value = totalEstimatedValueColumn.ToString();
                 }
             }
-                           
+
 
 
 
         }
 
-      
+
 
 
 
@@ -173,6 +228,35 @@ namespace WindowsFormsApp1
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearEverythingButton_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.Value = null;
+                }
+            }
+            MessageBox.Show("Are you sure?");
+
+        }
+
+        
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
