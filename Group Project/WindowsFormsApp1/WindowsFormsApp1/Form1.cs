@@ -94,14 +94,14 @@ namespace WindowsFormsApp1
                     if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
                     {
                         ++categoryTotalsCounter;
-                        categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[i].Cells[totalColumnIndex].Value));
+                        categoryTotals[categoryTotalsCounter] = Convert.ToDouble(dataGridView1.Rows[i].Cells[totalColumnIndex].Value);
                     } else
                     {
                         categoryTotals[categoryTotalsCounter] += Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value); 
                     }
                  } else if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
                 {
-                    categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value));
+                    categoryTotals[categoryTotalsCounter] = Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value);
                 } else
                 {
                     break;
