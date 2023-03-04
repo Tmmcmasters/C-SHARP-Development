@@ -32,28 +32,7 @@ namespace WindowsFormsApp1
 
 
             pieGraph.Visible = false;
-
-            pieGraph.Series.Clear();
-            pieGraph.Titles.Clear();
-
-            pieGraph.Series.Add("s1");
-            pieGraph.Titles.Add(" Materials Estimated Chart");
-            pieGraph.Series["s1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            pieGraph.Series["s1"].IsValueShownAsLabel = false;
-            //chart1.Series["s1"].Label = "#PERCENT";
-            //chart1.Series["s1"].Label = "#VALY";
-            pieGraph.Series["s1"].Label = "#VALY (#PERCENT)";
-
-            string[] options = categories.ToArray();
-            int[] categoryTotals = { 10, 20, 70, 88, 55, 89, 20 };
-
-
-
-            for (int x = 0; x < options.Length; ++x)
-            {
-                pieGraph.Series["s1"].Points.AddXY(options[x], categoryTotals[x]);
-                pieGraph.Series["s1"].Points[x].LegendText = options[x];
-            }
+                                    
         }
 
 
@@ -62,7 +41,18 @@ namespace WindowsFormsApp1
 
         private void CalculateButton_Click(object sender, EventArgs e)
         {
-            pieGraph.Visible = true;
+            //PIE GRAPH INITIATION
+            pieGraph.Visible = false;
+            pieGraph.Series.Clear();
+            pieGraph.Titles.Clear();
+            pieGraph.Series.Add("s1");
+            pieGraph.Titles.Add(" Materials Estimated Chart");
+            pieGraph.Series["s1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            pieGraph.Series["s1"].IsValueShownAsLabel = false;
+            //chart1.Series["s1"].Label = "#PERCENT";
+            //chart1.Series["s1"].Label = "#VALY";
+            pieGraph.Series["s1"].Label = "#VALY (#PERCENT)";
+
             this.Size = new Size(715, 866);
             //Calculates and stores the totals of all total estimated values
             label2.Text = "0";
@@ -110,6 +100,14 @@ namespace WindowsFormsApp1
             {
                 Console.WriteLine(logActualCategories);
             }
+
+            //Outputing Categorys and Category Totals to Pie Graph
+            for (int x = 0; x < categoriesThatExist.Count; ++x)
+            {
+                pieGraph.Series["s1"].Points.AddXY(categoriesThatExist[x], categoryTotals[x]);
+                pieGraph.Series["s1"].Points[x].LegendText = categoriesThatExist[x];
+            }
+            pieGraph.Visible = true;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
