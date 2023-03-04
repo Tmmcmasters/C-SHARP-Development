@@ -81,36 +81,25 @@ namespace WindowsFormsApp1
             List<string> categoriesThatExist = new List<string>();
             List<double> categoryTotals = new List<double>();
             const int categoryColumnIndex = 0;
-            int categoryTotalsCounter = 0;
+            int currentCategoryIndex = -1;
+
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                
                 if (dataGridView1.Rows[i].Cells[categoryColumnIndex].Value != null && dataGridView1.Rows[i].Cells[categoryColumnIndex].Value.ToString() != "")
                 {
+                    string currentCategory = dataGridView1.Rows[i].Cells[categoryColumnIndex].Value.ToString();
+                    if (!categoriesThatExist.Contains(currentCategory))
+                    {
+                        categoriesThatExist.Add(currentCategory);
+                        categoryTotals.Add(0);
+                        currentCategoryIndex++;
+                    }
+                }
 
-                    categoriesThatExist.Add(dataGridView1.Rows[i].Cells[categoryColumnIndex].Value.ToString());
-                }
-                if (i != 0)
+                if (currentCategoryIndex >= 0)
                 {
-                    if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
-                    {
-                        ++categoryTotalsCounter;
-                        //categoryTotals[categoryTotalsCounter] = Convert.ToDouble(dataGridView1.Rows[i].Cells[totalColumnIndex].Value);
-                        categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[i].Cells[totalColumnIndex].Value));
-                    }
-                    else
-                    {
-                        categoryTotals[categoryTotalsCounter] += Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value);
-                    }
-                }
-                else if (dataGridView1.Rows[0].Cells[categoryColumnIndex] != null && dataGridView1.Rows[0].Cells[categoryColumnIndex].Value.ToString() != "")
-                {
-                   // categoryTotals[categoryTotalsCounter] = Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value);
-                    categoryTotals.Add(Convert.ToDouble(dataGridView1.Rows[0].Cells[totalColumnIndex].Value));
-                }
-                else
-                {
-                    break;
+                    double totalEstimatedValue = Convert.ToDouble(dataGridView1.Rows[i].Cells[totalColumnIndex].Value);
+                    categoryTotals[currentCategoryIndex] += totalEstimatedValue;
                 }
             }
             foreach (double logCategoryTotals in categoryTotals)
