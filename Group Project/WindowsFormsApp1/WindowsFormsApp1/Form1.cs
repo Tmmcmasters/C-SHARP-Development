@@ -194,11 +194,21 @@ namespace WindowsFormsApp1
         private void addCategoryButton_Click(object sender, EventArgs e)
         {
             // Add a new category to the drop down list and enable the next row in the category column
-            categories.Add("New Category");
-            categoryList.Items.Add("New Category");
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["categoryList"].ReadOnly = false;
-            dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["categoryList"].Style.BackColor = Color.White;
+            using (var inputBox = new InputBox("Enter the category:"))
+            {
+                if (inputBox.ShowDialog() == DialogResult.OK)
+                {
+                    string userInput = inputBox.UserInput;
+                    categories.Add(userInput);
+                    categoryList.Items.Add(userInput);
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["categoryList"].ReadOnly = false;
+                    dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["categoryList"].Style.BackColor = Color.White;
+                }
+            }
+            
         }
+
+        //Calculates the total estimated value column
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
             int quanity, item;
             if (dataGridView1.Rows[e.RowIndex].Cells["quantityColumn"]?.Value != null
@@ -247,6 +257,8 @@ namespace WindowsFormsApp1
 
         }
 
+
+        //Clear button
         private void clearEverythingButton_Click_1(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
