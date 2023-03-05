@@ -30,5 +30,10 @@ namespace WindowsFormsApp1
         {
             DialogResult= DialogResult.Cancel;
         }
+
+        private void InputBox_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

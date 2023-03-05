@@ -46,6 +46,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.clearEverythingButton = new System.Windows.Forms.Button();
+            this.budgetComboBox = new System.Windows.Forms.ComboBox();
+            this.budgetLabel = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.categoryBudgetLabel = new System.Windows.Forms.Label();
+            this.priceBudgetLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pieGraph)).BeginInit();
             this.SuspendLayout();
@@ -72,6 +77,7 @@
             this.saveButton.TabIndex = 2;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // loadButton
             // 
@@ -82,6 +88,7 @@
             this.loadButton.TabIndex = 3;
             this.loadButton.Text = "Load(-_/*-*\\_-)";
             this.loadButton.UseVisualStyleBackColor = true;
+            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);
             // 
             // dataGridView1
             // 
@@ -100,7 +107,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(675, 247);
+            this.dataGridView1.Size = new System.Drawing.Size(678, 247);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
@@ -225,12 +232,68 @@
             this.clearEverythingButton.UseVisualStyleBackColor = false;
             this.clearEverythingButton.Click += new System.EventHandler(this.clearEverythingButton_Click_1);
             // 
+            // budgetComboBox
+            // 
+            this.budgetComboBox.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.budgetComboBox.FormattingEnabled = true;
+            this.budgetComboBox.Location = new System.Drawing.Point(712, 122);
+            this.budgetComboBox.Name = "budgetComboBox";
+            this.budgetComboBox.Size = new System.Drawing.Size(144, 38);
+            this.budgetComboBox.TabIndex = 11;
+            // 
+            // budgetLabel
+            // 
+            this.budgetLabel.AutoSize = true;
+            this.budgetLabel.Font = new System.Drawing.Font("Comic Sans MS", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.budgetLabel.ForeColor = System.Drawing.Color.LightGreen;
+            this.budgetLabel.Location = new System.Drawing.Point(794, 9);
+            this.budgetLabel.Name = "budgetLabel";
+            this.budgetLabel.Size = new System.Drawing.Size(173, 45);
+            this.budgetLabel.TabIndex = 12;
+            this.budgetLabel.Text = "BUDGETS";
+            this.budgetLabel.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(913, 122);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(133, 41);
+            this.textBox2.TabIndex = 13;
+            // 
+            // categoryBudgetLabel
+            // 
+            this.categoryBudgetLabel.AutoSize = true;
+            this.categoryBudgetLabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryBudgetLabel.ForeColor = System.Drawing.Color.LightGreen;
+            this.categoryBudgetLabel.Location = new System.Drawing.Point(739, 96);
+            this.categoryBudgetLabel.Name = "categoryBudgetLabel";
+            this.categoryBudgetLabel.Size = new System.Drawing.Size(80, 23);
+            this.categoryBudgetLabel.TabIndex = 14;
+            this.categoryBudgetLabel.Text = "Category";
+            // 
+            // priceBudgetLabel
+            // 
+            this.priceBudgetLabel.AutoSize = true;
+            this.priceBudgetLabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.priceBudgetLabel.ForeColor = System.Drawing.Color.LightGreen;
+            this.priceBudgetLabel.Location = new System.Drawing.Point(925, 96);
+            this.priceBudgetLabel.Name = "priceBudgetLabel";
+            this.priceBudgetLabel.Size = new System.Drawing.Size(108, 23);
+            this.priceBudgetLabel.TabIndex = 15;
+            this.priceBudgetLabel.Text = "Price Budget";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(693, 385);
+            this.ClientSize = new System.Drawing.Size(1070, 385);
+            this.Controls.Add(this.priceBudgetLabel);
+            this.Controls.Add(this.categoryBudgetLabel);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.budgetLabel);
+            this.Controls.Add(this.budgetComboBox);
             this.Controls.Add(this.clearEverythingButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -269,6 +332,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button clearEverythingButton;
+        private System.Windows.Forms.ComboBox budgetComboBox;
+        private System.Windows.Forms.Label budgetLabel;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label categoryBudgetLabel;
+        private System.Windows.Forms.Label priceBudgetLabel;
     }
 }
 

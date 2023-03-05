@@ -92,6 +92,7 @@
             this.Controls.Add(this.enterCategoryLabel);
             this.Name = "InputBox";
             this.Text = "InputBox";
+            this.Load += new System.EventHandler(this.InputBox_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

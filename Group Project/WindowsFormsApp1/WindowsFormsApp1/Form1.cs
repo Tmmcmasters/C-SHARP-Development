@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.IO;
+
 
 namespace WindowsFormsApp1
 {
@@ -262,6 +264,103 @@ namespace WindowsFormsApp1
                 }
             }
             MessageBox.Show("Are you sure you want to clear everything!?");
+        }
+
+        //Save Button 
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Please select a folder to save";
+            sfd.InitialDirectory = Application.StartupPath;
+            sfd.Filter = "txt|*.txt|bin|*.bin|all|*.*";    // Choose the file type
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string file = sfd.FileName;
+                using (BinaryWriter writer = new BinaryWriter(File.Open(file, FileMode.Create)))
+                {
+                    int filledRow = 0;
+                    foreach (DataGridViewRow dataRow in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell item in dataRow.Cells)
+                        {
+                            if (item.Value != null)
+                            {
+                                filledRow++;
+                                break;
+                            }
+                        }
+                    }
+
+                    writer.Write(dataGridView1.Columns.Count);
+                    writer.Write(filledRow); // dataGridView1.Rows.Count);
+                    foreach (DataGridViewRow dataRow in dataGridView1.Rows)  // Write each filled row
+                    {
+                        bool filled = false;
+                        foreach (DataGridViewCell item in dataRow.Cells)
+                        {
+                            if (item.Value != null)
+                            {
+                                filled = true;
+                                break;
+                            }
+                        }
+                        if (filled)
+                        {
+                            for (int j = 0; j < dataGridView1.Columns.Count; ++j)
+                            {
+                                object cellData = dataRow.Cells[j].Value;
+                                if (cellData == null)
+                                {
+                                    writer.Write(false);
+                                    writer.Write(false);
+                                }
+                                else
+                                {
+                                    writer.Write(true);
+                                    writer.Write(cellData.ToString());
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            Close();
+        }
+
+        private void loadButton_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            OpenFileDialog sfd = new OpenFileDialog();
+            sfd.Title = "Please select a file to load";
+            sfd.InitialDirectory = Application.StartupPath;
+            sfd.Filter = "txt|*.txt|bin|*.bin|all|*.*";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                string file = sfd.FileName;
+                using (BinaryReader reader = new BinaryReader(File.Open(file, FileMode.Open)))
+                {
+                    int cols = reader.ReadInt32();    // Get the columns number
+                    int rows = reader.ReadInt32();    // Get the rows number
+                    for (int i = 0; i < rows; ++i)
+                    {
+                        dataGridView1.Rows.Add();
+                        for (int j = 0; j < cols; ++j)
+                        {
+                            if (reader.ReadBoolean())  // if "true", read the cell.
+                            {
+                                dataGridView1.Rows[i].Cells[j].Value = reader.ReadString();
+                            }
+                            else reader.ReadBoolean();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
