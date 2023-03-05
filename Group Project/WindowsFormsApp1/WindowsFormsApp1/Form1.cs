@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
             //chart1.Series["s1"].Label = "#VALY";
             pieGraph.Series["s1"].Label = "#VALY (#PERCENT)";
 
-            this.Size = new Size(715, 866);
+            this.Size = new Size(834, 866);
             //Calculates and stores the totals of all total estimated values
             label2.Text = "0";
             const int totalColumnIndex = 4;
@@ -124,13 +124,14 @@ namespace WindowsFormsApp1
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
 
 
 
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            
             // Checks if the current cell is in the quantity column
             if (dataGridView1.Columns[e.ColumnIndex].Name.Equals("quantityColumn", StringComparison.OrdinalIgnoreCase))
             {
@@ -174,8 +175,17 @@ namespace WindowsFormsApp1
                     textBox1.Hide();
                 }
             }
-            // Checks if the current cell is in the category column
-            if (dataGridView1.Columns[e.ColumnIndex].Name.Equals("categoryColumn", StringComparison.OrdinalIgnoreCase))
+            //Cell validating, highlight row
+            int categoryColumnIndex = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(dataGridView1.Rows[i].Cells[categoryColumnIndex].FormattedValue as string))
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+            }
+                // Checks if the current cell is in the category column
+                if (dataGridView1.Columns[e.ColumnIndex].Name.Equals("categoryColumn", StringComparison.OrdinalIgnoreCase))
             {
                 // Gray out the next row in the category column if the current category is not "Others"
                 if (e.FormattedValue.ToString() != "Others")
@@ -184,9 +194,11 @@ namespace WindowsFormsApp1
                     dataGridView1.Rows[e.RowIndex + 1].Cells["categoryColumn"].Style.BackColor = Color.LightGray;
                 }
             }
+            
         }
 
-        private void addCategoryButton_Click(object sender, EventArgs e)
+       
+            private void addCategoryButton_Click(object sender, EventArgs e)
         {
             // Add a new category to the drop down list and enable the next row in the category column
             using (var inputBox = new InputBox("Enter the category:"))
@@ -215,6 +227,8 @@ namespace WindowsFormsApp1
                     int totalEstimatedValueColumn = quanity * item;
                     dataGridView1.Rows[e.RowIndex].Cells["totalEstimatedValueColumn"].Value = totalEstimatedValueColumn.ToString();
                 }
+            
+
             }
 
 
@@ -361,6 +375,31 @@ namespace WindowsFormsApp1
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        //Trying to highlight the every row for which a category is selected.
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            
+        }
+
+        private void testButton_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[1].DefaultCellStyle.BackColor = Color.Yellow;
+
+        }
+
+        private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            int categoryColumnIndex = 0;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(dataGridView1.Rows[i].Cells[categoryColumnIndex].FormattedValue as string))
+                {
+                    dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Yellow;
+                }
+            }
         }
     }
 }

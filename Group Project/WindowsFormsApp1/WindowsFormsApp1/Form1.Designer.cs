@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.calculateButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
@@ -40,17 +41,13 @@
             this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalEstimatedValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryBudgetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.pieGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.clearEverythingButton = new System.Windows.Forms.Button();
-            this.budgetComboBox = new System.Windows.Forms.ComboBox();
-            this.budgetLabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.categoryBudgetLabel = new System.Windows.Forms.Label();
-            this.priceBudgetLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pieGraph)).BeginInit();
             this.SuspendLayout();
@@ -101,20 +98,26 @@
             this.itemColumn,
             this.quantityColumn,
             this.unitPriceColumn,
-            this.totalEstimatedValueColumn});
+            this.totalEstimatedValueColumn,
+            this.categoryBudgetColumn});
             this.dataGridView1.Location = new System.Drawing.Point(9, 10);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(678, 247);
+            this.dataGridView1.Size = new System.Drawing.Size(802, 247);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValidated);
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // categoryList
             // 
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.categoryList.DefaultCellStyle = dataGridViewCellStyle1;
             this.categoryList.HeaderText = "Category";
             this.categoryList.MinimumWidth = 6;
             this.categoryList.Name = "categoryList";
@@ -151,6 +154,14 @@
             this.totalEstimatedValueColumn.ReadOnly = true;
             this.totalEstimatedValueColumn.Width = 125;
             // 
+            // categoryBudgetColumn
+            // 
+            this.categoryBudgetColumn.HeaderText = "Category Budgets";
+            this.categoryBudgetColumn.Name = "categoryBudgetColumn";
+            this.categoryBudgetColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.categoryBudgetColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.categoryBudgetColumn.Width = 125;
+            // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.WindowFrame;
@@ -181,19 +192,19 @@
             // pieGraph
             // 
             this.pieGraph.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.BackSecondaryColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.pieGraph.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.pieGraph.Legends.Add(legend2);
+            chartArea1.BackSecondaryColor = System.Drawing.Color.Transparent;
+            chartArea1.Name = "ChartArea1";
+            this.pieGraph.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.pieGraph.Legends.Add(legend1);
             this.pieGraph.Location = new System.Drawing.Point(30, 401);
             this.pieGraph.Margin = new System.Windows.Forms.Padding(2);
             this.pieGraph.Name = "pieGraph";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.pieGraph.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.pieGraph.Series.Add(series1);
             this.pieGraph.Size = new System.Drawing.Size(450, 228);
             this.pieGraph.TabIndex = 7;
             this.pieGraph.Text = "chart1";
@@ -232,68 +243,12 @@
             this.clearEverythingButton.UseVisualStyleBackColor = false;
             this.clearEverythingButton.Click += new System.EventHandler(this.clearEverythingButton_Click_1);
             // 
-            // budgetComboBox
-            // 
-            this.budgetComboBox.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.budgetComboBox.FormattingEnabled = true;
-            this.budgetComboBox.Location = new System.Drawing.Point(712, 122);
-            this.budgetComboBox.Name = "budgetComboBox";
-            this.budgetComboBox.Size = new System.Drawing.Size(144, 38);
-            this.budgetComboBox.TabIndex = 11;
-            // 
-            // budgetLabel
-            // 
-            this.budgetLabel.AutoSize = true;
-            this.budgetLabel.Font = new System.Drawing.Font("Comic Sans MS", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.budgetLabel.ForeColor = System.Drawing.Color.LightGreen;
-            this.budgetLabel.Location = new System.Drawing.Point(794, 9);
-            this.budgetLabel.Name = "budgetLabel";
-            this.budgetLabel.Size = new System.Drawing.Size(173, 45);
-            this.budgetLabel.TabIndex = 12;
-            this.budgetLabel.Text = "BUDGETS";
-            this.budgetLabel.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Comic Sans MS", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(913, 122);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(133, 41);
-            this.textBox2.TabIndex = 13;
-            // 
-            // categoryBudgetLabel
-            // 
-            this.categoryBudgetLabel.AutoSize = true;
-            this.categoryBudgetLabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.categoryBudgetLabel.ForeColor = System.Drawing.Color.LightGreen;
-            this.categoryBudgetLabel.Location = new System.Drawing.Point(739, 96);
-            this.categoryBudgetLabel.Name = "categoryBudgetLabel";
-            this.categoryBudgetLabel.Size = new System.Drawing.Size(80, 23);
-            this.categoryBudgetLabel.TabIndex = 14;
-            this.categoryBudgetLabel.Text = "Category";
-            // 
-            // priceBudgetLabel
-            // 
-            this.priceBudgetLabel.AutoSize = true;
-            this.priceBudgetLabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.priceBudgetLabel.ForeColor = System.Drawing.Color.LightGreen;
-            this.priceBudgetLabel.Location = new System.Drawing.Point(925, 96);
-            this.priceBudgetLabel.Name = "priceBudgetLabel";
-            this.priceBudgetLabel.Size = new System.Drawing.Size(108, 23);
-            this.priceBudgetLabel.TabIndex = 15;
-            this.priceBudgetLabel.Text = "Price Budget";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1070, 385);
-            this.Controls.Add(this.priceBudgetLabel);
-            this.Controls.Add(this.categoryBudgetLabel);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.budgetLabel);
-            this.Controls.Add(this.budgetComboBox);
+            this.ClientSize = new System.Drawing.Size(822, 385);
             this.Controls.Add(this.clearEverythingButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -322,21 +277,17 @@
         private System.Windows.Forms.Button loadButton;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridViewComboBoxColumn categoryList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalEstimatedValueColumn;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataVisualization.Charting.Chart pieGraph;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button clearEverythingButton;
-        private System.Windows.Forms.ComboBox budgetComboBox;
-        private System.Windows.Forms.Label budgetLabel;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label categoryBudgetLabel;
-        private System.Windows.Forms.Label priceBudgetLabel;
+        private System.Windows.Forms.DataGridViewComboBoxColumn categoryList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalEstimatedValueColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoryBudgetColumn;
     }
 }
 
