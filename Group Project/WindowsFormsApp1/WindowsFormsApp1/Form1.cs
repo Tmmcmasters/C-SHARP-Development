@@ -116,6 +116,14 @@ namespace WindowsFormsApp1
                 pieGraph.Series["s1"].Points[x].LegendText = categoriesThatExist[x];
             }
             pieGraph.Visible = true;
+
+           /* for (int x = 0; x < categoriesThatExist.Count; x++)
+            {
+                if () 
+                {
+
+                }
+            }*/
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -281,14 +289,16 @@ namespace WindowsFormsApp1
         //Clear button
         private void clearEverythingButton_Click_1(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+             if (DialogResult.Yes == MessageBox.Show("Are you sure you want to clear everything!?", "Clear Everything", MessageBoxButtons.YesNo, MessageBoxIcon.Information)) 
             {
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    cell.Value = null;
-                }
+                dataGridView1.Rows.Clear();
+            } else
+            {
+                
             }
-            MessageBox.Show("Are you sure you want to clear everything!?");
+            
+            
+            
         }
 
         //Save Button 
