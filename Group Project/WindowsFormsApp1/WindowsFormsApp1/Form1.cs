@@ -32,6 +32,12 @@ namespace WindowsFormsApp1
             // Adding items to the drop down list
             categoryList.Items.AddRange(categories.ToArray());
 
+            //Adding the categories so that everything equals eachother
+            CategoryNameBudgetComboBox.Items.Clear();
+            foreach (var item in categories)
+            {
+                CategoryNameBudgetComboBox.Items.Add(item);
+            }
 
             pieGraph.Visible = false;
                                     
@@ -55,7 +61,7 @@ namespace WindowsFormsApp1
             //chart1.Series["s1"].Label = "#VALY";
             pieGraph.Series["s1"].Label = "#VALY (#PERCENT)";
 
-            this.Size = new Size(834, 866);
+            this.Size = new Size(1011, 866);
             //Calculates and stores the totals of all total estimated values
             label2.Text = "0";
             const int totalColumnIndex = 4;
@@ -197,8 +203,11 @@ namespace WindowsFormsApp1
             
         }
 
-       
-            private void addCategoryButton_Click(object sender, EventArgs e)
+        List<string> selectedCategories = new List<string>();
+
+        
+
+        private void addCategoryButton_Click(object sender, EventArgs e)
         {
             // Add a new category to the drop down list and enable the next row in the category column
             using (var inputBox = new InputBox("Enter the category:"))
@@ -208,8 +217,10 @@ namespace WindowsFormsApp1
                     string userInput = inputBox.UserInput;
                     categories.Add(userInput);
                     categoryList.Items.Add(userInput);
+                    CategoryNameBudgetComboBox.Items.Add(userInput); 
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["categoryList"].ReadOnly = false;
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["categoryList"].Style.BackColor = Color.White;
+                    
                 }
             }
             
@@ -401,6 +412,92 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        //categories.Add(userInput);
+          //  categoryList.Items.Add(userInput);
+        List<CategoryItem> categorysBudgetList = new List<CategoryItem>();
+        
+        private void addCategoryBudget_Click(object sender, EventArgs e)
+        {
+            
+            bool CategoryExisted = false;
+            foreach (CategoryItem item in categorysBudgetList)
+            {
+                if (item.Category.ToLower().Trim() == CategoryNameBudgetComboBox.Text.ToLower().Trim())
+                {
+                    CategoryExisted = true;
+                    break;
+                }
+            }
+            if (!CategoryExisted)
+            {
+                CategoryItem item = new CategoryItem();
+                item.Category = CategoryNameBudgetComboBox.Text.Trim();
+                if (categoryPriceBudgetTextBox.Text == "")
+                    categoryPriceBudgetTextBox.Text = "0";
+                else
+                    item.Budget = Convert.ToInt32(categoryPriceBudgetTextBox.Text);
+                //item.Budget = Convert.ToInt32(categoryPriceBudgetTextBox.Text);
+                categorysBudgetList.Add(item);
+            }
+            else
+            {
+                CategoryItem item = categorysBudgetList.Find(x => x.Category.ToLower().Trim() == CategoryNameBudgetComboBox.Text.ToLower().Trim());
+                if (categoryPriceBudgetTextBox.Text == "")
+                    categoryPriceBudgetTextBox.Text = "0";
+                else
+                    item.Budget = Convert.ToInt32(categoryPriceBudgetTextBox.Text);
+                //item.Budget = Convert.ToInt32(categoryPriceBudgetTextBox.Text);
+            }
+
+            bool totalItemExisted = false;
+            double totalBudget = 0;
+            foreach (CategoryItem item in categorysBudgetList)
+            {
+                totalBudget += item.Category.ToLower().Trim() == "total" ? 0 : item.Budget;
+                if (item.Category.ToLower().Trim() == "total")
+                {
+                    totalItemExisted = true;
+                }
+            }
+            if (totalItemExisted)
+            {
+                CategoryItem removelitem = categorysBudgetList.Find(x => x.Category.ToLower().Trim() == "total");
+                categorysBudgetList.Remove(removelitem);
+            }
+            CategoryItem totalitem = new CategoryItem() { Category = "Total", Budget = totalBudget };
+            categorysBudgetList.Add(totalitem);
+
+            categoryPriceBudgetTextBox.Text = "";
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = categorysBudgetList;
+            dataGridView2.ForeColor = Color.Black;
+            foreach (DataGridViewColumn col in dataGridView2.Columns)
+            {
+                col.HeaderCell.Style.Font = new Font("Arial", 16F, GraphicsUnit.Pixel);
+            }
+            dataGridView2.DefaultCellStyle.Font = new Font("Arial", 14F, GraphicsUnit.Pixel);
+        }
+
+        private void categoryPriceBudgetTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+    }
+
+    class CategoryItem
+    {
+        public string Category { get; set; }
+        public double Budget { get; set; }
     }
 }
 

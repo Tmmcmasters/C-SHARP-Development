@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
@@ -41,15 +42,23 @@
             this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalEstimatedValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryBudgetColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.pieGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.clearEverythingButton = new System.Windows.Forms.Button();
+            this.groupBoxBudget = new System.Windows.Forms.GroupBox();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.addCategoryBudget = new System.Windows.Forms.Button();
+            this.categoryPriceBudgetTextBox = new System.Windows.Forms.TextBox();
+            this.CategoryNameBudgetComboBox = new System.Windows.Forms.ComboBox();
+            this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pieGraph)).BeginInit();
+            this.groupBoxBudget.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // calculateButton
@@ -98,19 +107,19 @@
             this.itemColumn,
             this.quantityColumn,
             this.unitPriceColumn,
-            this.totalEstimatedValueColumn,
-            this.categoryBudgetColumn});
+            this.totalEstimatedValueColumn});
             this.dataGridView1.Location = new System.Drawing.Point(9, 10);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(802, 247);
+            this.dataGridView1.Size = new System.Drawing.Size(677, 247);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValidated);
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
+            
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             // 
             // categoryList
@@ -153,14 +162,6 @@
             this.totalEstimatedValueColumn.Name = "totalEstimatedValueColumn";
             this.totalEstimatedValueColumn.ReadOnly = true;
             this.totalEstimatedValueColumn.Width = 125;
-            // 
-            // categoryBudgetColumn
-            // 
-            this.categoryBudgetColumn.HeaderText = "Category Budgets";
-            this.categoryBudgetColumn.Name = "categoryBudgetColumn";
-            this.categoryBudgetColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.categoryBudgetColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.categoryBudgetColumn.Width = 125;
             // 
             // textBox1
             // 
@@ -243,12 +244,67 @@
             this.clearEverythingButton.UseVisualStyleBackColor = false;
             this.clearEverythingButton.Click += new System.EventHandler(this.clearEverythingButton_Click_1);
             // 
+            // groupBoxBudget
+            // 
+            this.groupBoxBudget.Controls.Add(this.dataGridView2);
+            this.groupBoxBudget.Controls.Add(this.addCategoryBudget);
+            this.groupBoxBudget.Controls.Add(this.categoryPriceBudgetTextBox);
+            this.groupBoxBudget.Controls.Add(this.CategoryNameBudgetComboBox);
+            this.groupBoxBudget.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxBudget.ForeColor = System.Drawing.Color.LawnGreen;
+            this.groupBoxBudget.Location = new System.Drawing.Point(691, 12);
+            this.groupBoxBudget.Name = "groupBoxBudget";
+            this.groupBoxBudget.Size = new System.Drawing.Size(292, 245);
+            this.groupBoxBudget.TabIndex = 11;
+            this.groupBoxBudget.TabStop = false;
+            this.groupBoxBudget.Text = "Budgets";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(9, 80);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(277, 150);
+            this.dataGridView2.TabIndex = 3;
+            // 
+            // addCategoryBudget
+            // 
+            this.addCategoryBudget.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.addCategoryBudget.ForeColor = System.Drawing.Color.Black;
+            this.addCategoryBudget.Location = new System.Drawing.Point(255, 38);
+            this.addCategoryBudget.Name = "addCategoryBudget";
+            this.addCategoryBudget.Size = new System.Drawing.Size(33, 33);
+            this.addCategoryBudget.TabIndex = 2;
+            this.addCategoryBudget.Text = "+";
+            this.addCategoryBudget.UseVisualStyleBackColor = false;
+            this.addCategoryBudget.Click += new System.EventHandler(this.addCategoryBudget_Click);
+            // 
+            // categoryPriceBudgetTextBox
+            // 
+            this.categoryPriceBudgetTextBox.Location = new System.Drawing.Point(149, 36);
+            this.categoryPriceBudgetTextBox.Name = "categoryPriceBudgetTextBox";
+            this.categoryPriceBudgetTextBox.Size = new System.Drawing.Size(100, 37);
+            this.categoryPriceBudgetTextBox.TabIndex = 1;
+            // 
+            // CategoryNameBudgetComboBox
+            // 
+            this.CategoryNameBudgetComboBox.FormattingEnabled = true;
+            this.CategoryNameBudgetComboBox.Location = new System.Drawing.Point(6, 36);
+            this.CategoryNameBudgetComboBox.Name = "CategoryNameBudgetComboBox";
+            this.CategoryNameBudgetComboBox.Size = new System.Drawing.Size(137, 38);
+            this.CategoryNameBudgetComboBox.TabIndex = 0;
+            // 
+            // form1BindingSource
+            // 
+            this.form1BindingSource.DataSource = typeof(WindowsFormsApp1.Form1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(822, 385);
+            this.ClientSize = new System.Drawing.Size(995, 385);
+            this.Controls.Add(this.groupBoxBudget);
             this.Controls.Add(this.clearEverythingButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -265,6 +321,10 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pieGraph)).EndInit();
+            this.groupBoxBudget.ResumeLayout(false);
+            this.groupBoxBudget.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.form1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,7 +347,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalEstimatedValueColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryBudgetColumn;
+        private System.Windows.Forms.GroupBox groupBoxBudget;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button addCategoryBudget;
+        private System.Windows.Forms.TextBox categoryPriceBudgetTextBox;
+        private System.Windows.Forms.ComboBox CategoryNameBudgetComboBox;
+        private System.Windows.Forms.BindingSource form1BindingSource;
     }
 }
 
