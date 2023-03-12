@@ -170,20 +170,7 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
             
-        }
 
 
 
@@ -291,45 +278,10 @@ namespace WindowsFormsApp1
                     dataGridView1.Rows[e.RowIndex].Cells["totalEstimatedValueColumn"].Value = totalEstimatedValueColumn.ToString();
                 }
             
-
             }
-
-
-
-
         }
 
-
-
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-               
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+        
         //Clear button
         private void clearEverythingButton_Click_1(object sender, EventArgs e)
         {
@@ -439,12 +391,7 @@ namespace WindowsFormsApp1
         }
         //#endregion
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+       
         //Trying to highlight the every row for which a category is selected.
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
