@@ -29,19 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.calculateButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.loadButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.categoryList = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.itemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalEstimatedValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.pieGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -53,6 +48,11 @@
             this.addCategoryBudget = new System.Windows.Forms.Button();
             this.categoryPriceBudgetTextBox = new System.Windows.Forms.TextBox();
             this.CategoryNameBudgetComboBox = new System.Windows.Forms.ComboBox();
+            this.categoryList = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.itemColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unitPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalEstimatedValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.form1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pieGraph)).BeginInit();
@@ -98,7 +98,6 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -121,47 +120,6 @@
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValidated);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
-            // 
-            // categoryList
-            // 
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            this.categoryList.DefaultCellStyle = dataGridViewCellStyle1;
-            this.categoryList.HeaderText = "Category";
-            this.categoryList.MinimumWidth = 6;
-            this.categoryList.Name = "categoryList";
-            this.categoryList.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.categoryList.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.categoryList.Width = 125;
-            // 
-            // itemColumn
-            // 
-            this.itemColumn.HeaderText = "Item";
-            this.itemColumn.MinimumWidth = 6;
-            this.itemColumn.Name = "itemColumn";
-            this.itemColumn.Width = 125;
-            // 
-            // quantityColumn
-            // 
-            this.quantityColumn.HeaderText = "Quantity";
-            this.quantityColumn.MinimumWidth = 6;
-            this.quantityColumn.Name = "quantityColumn";
-            this.quantityColumn.Width = 125;
-            // 
-            // unitPriceColumn
-            // 
-            this.unitPriceColumn.HeaderText = "Unit Price";
-            this.unitPriceColumn.MinimumWidth = 6;
-            this.unitPriceColumn.Name = "unitPriceColumn";
-            this.unitPriceColumn.Width = 125;
-            // 
-            // totalEstimatedValueColumn
-            // 
-            this.totalEstimatedValueColumn.HeaderText = "Total Estimated Value";
-            this.totalEstimatedValueColumn.MinimumWidth = 6;
-            this.totalEstimatedValueColumn.Name = "totalEstimatedValueColumn";
-            this.totalEstimatedValueColumn.ReadOnly = true;
-            this.totalEstimatedValueColumn.Width = 125;
             // 
             // textBox1
             // 
@@ -294,6 +252,50 @@
             this.CategoryNameBudgetComboBox.Size = new System.Drawing.Size(137, 38);
             this.CategoryNameBudgetComboBox.TabIndex = 0;
             // 
+            // categoryList
+            // 
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            this.categoryList.DefaultCellStyle = dataGridViewCellStyle1;
+            this.categoryList.HeaderText = "Category";
+            this.categoryList.MinimumWidth = 6;
+            this.categoryList.Name = "categoryList";
+            this.categoryList.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.categoryList.Width = 125;
+            // 
+            // itemColumn
+            // 
+            this.itemColumn.HeaderText = "Item";
+            this.itemColumn.MinimumWidth = 6;
+            this.itemColumn.Name = "itemColumn";
+            this.itemColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.itemColumn.Width = 125;
+            // 
+            // quantityColumn
+            // 
+            this.quantityColumn.HeaderText = "Quantity";
+            this.quantityColumn.MinimumWidth = 6;
+            this.quantityColumn.Name = "quantityColumn";
+            this.quantityColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.quantityColumn.Width = 125;
+            // 
+            // unitPriceColumn
+            // 
+            this.unitPriceColumn.HeaderText = "Unit Price";
+            this.unitPriceColumn.MinimumWidth = 6;
+            this.unitPriceColumn.Name = "unitPriceColumn";
+            this.unitPriceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.unitPriceColumn.Width = 125;
+            // 
+            // totalEstimatedValueColumn
+            // 
+            this.totalEstimatedValueColumn.HeaderText = "Total Estimated Value";
+            this.totalEstimatedValueColumn.MinimumWidth = 6;
+            this.totalEstimatedValueColumn.Name = "totalEstimatedValueColumn";
+            this.totalEstimatedValueColumn.ReadOnly = true;
+            this.totalEstimatedValueColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.totalEstimatedValueColumn.Width = 125;
+            // 
             // form1BindingSource
             // 
             this.form1BindingSource.DataSource = typeof(WindowsFormsApp1.Form1);
@@ -317,7 +319,7 @@
             this.Controls.Add(this.calculateButton);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Materials List Estimator";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pieGraph)).EndInit();
@@ -342,17 +344,17 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button clearEverythingButton;
-        private System.Windows.Forms.DataGridViewComboBoxColumn categoryList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalEstimatedValueColumn;
         private System.Windows.Forms.GroupBox groupBoxBudget;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button addCategoryBudget;
         private System.Windows.Forms.TextBox categoryPriceBudgetTextBox;
         private System.Windows.Forms.ComboBox CategoryNameBudgetComboBox;
         private System.Windows.Forms.BindingSource form1BindingSource;
+        private System.Windows.Forms.DataGridViewComboBoxColumn categoryList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unitPriceColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalEstimatedValueColumn;
     }
 }
 

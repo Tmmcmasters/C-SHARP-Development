@@ -90,8 +90,9 @@ namespace WindowsFormsApp1
                     {
                         categoriesThatExist.Add(currentCategory);
                         categoryTotals.Add(0);
-                        currentCategoryIndex++;
+                        //currentCategoryIndex++;
                     }
+                    currentCategoryIndex = categoriesThatExist.IndexOf(currentCategory);
                 }
 
                 if (currentCategoryIndex >= 0)
@@ -117,13 +118,56 @@ namespace WindowsFormsApp1
             }
             pieGraph.Visible = true;
 
-           /* for (int x = 0; x < categoriesThatExist.Count; x++)
-            {
-                if () 
-                {
+            /* for (int x = 0; x < categoriesThatExist.Count; x++)
+             {
+                 if () 
+                 {
 
+                 }
+             }*/
+
+
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                else
+                    row.DefaultCellStyle.BackColor = Color.White;
+            }
+
+            List<string> categoriesBudgetList = new List<string>();
+            List<double> categoryBudgetPriceList = new List<double>();
+
+            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            {
+                string currentBudgetCategory = dataGridView2.Rows[i].Cells[0].Value.ToString();
+                double currentCategoryBudget = Convert.ToInt32(dataGridView2.Rows[i].Cells[1].Value);
+
+                categoriesBudgetList.Add(currentBudgetCategory);
+                categoryBudgetPriceList.Add(currentCategoryBudget);
+            }
+            for (int x = 0; x < categoriesThatExist.Count; ++x)
+            {
+                string categoryName = categoriesThatExist[x];
+                double categoryTotal = categoryTotals[x];
+                int idx = categoriesBudgetList.IndexOf(categoryName);
+                if (idx > -1)
+                {
+                    double categoryBudget = categoryBudgetPriceList[idx];
+                    if (categoryTotal > categoryBudget)
+                    {
+                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                        {
+                            if (dataGridView1.Rows[i].Cells[0].Value != null && dataGridView1.Rows[i].Cells[0].Value.ToString() == categoryName)
+                            {
+                                dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                            }
+                        }
+                    }
                 }
-            }*/
+
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -363,7 +407,8 @@ namespace WindowsFormsApp1
             Close();
         }
 
-        private void loadButton_Click(object sender, EventArgs e)
+        //#region CLICKING LOAD BUTTON -<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        private void loadButton_Click(object sender, EventArgs e) 
         {
             dataGridView1.Rows.Clear();
             OpenFileDialog sfd = new OpenFileDialog();
@@ -392,6 +437,7 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        //#endregion
 
         private void label3_Click(object sender, EventArgs e)
         {
