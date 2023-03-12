@@ -32,6 +32,12 @@ namespace WindowsFormsApp1
             // Adding items to the drop down list
             categoryList.Items.AddRange(categories.ToArray());
 
+            //Adding the categories so that everything equals eachother
+            CategoryNameBudgetComboBox.Items.Clear();
+            foreach (var item in categories)
+            {
+                CategoryNameBudgetComboBox.Items.Add(item);
+            }
 
             pieGraph.Visible = false;
                                     
@@ -55,7 +61,7 @@ namespace WindowsFormsApp1
             //chart1.Series["s1"].Label = "#VALY";
             pieGraph.Series["s1"].Label = "#VALY (#PERCENT)";
 
-            this.Size = new Size(834, 866);
+            this.Size = new Size(1011, 866);
             //Calculates and stores the totals of all total estimated values
             label2.Text = "0";
             const int totalColumnIndex = 4;
@@ -84,8 +90,9 @@ namespace WindowsFormsApp1
                     {
                         categoriesThatExist.Add(currentCategory);
                         categoryTotals.Add(0);
-                        currentCategoryIndex++;
+                        //currentCategoryIndex++;
                     }
+                    currentCategoryIndex = categoriesThatExist.IndexOf(currentCategory);
                 }
 
                 if (currentCategoryIndex >= 0)
@@ -110,22 +117,60 @@ namespace WindowsFormsApp1
                 pieGraph.Series["s1"].Points[x].LegendText = categoriesThatExist[x];
             }
             pieGraph.Visible = true;
+
+            /* for (int x = 0; x < categoriesThatExist.Count; x++)
+             {
+                 if () 
+                 {
+
+                 }
+             }*/
+
+
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                else
+                    row.DefaultCellStyle.BackColor = Color.White;
+            }
+
+            List<string> categoriesBudgetList = new List<string>();
+            List<double> categoryBudgetPriceList = new List<double>();
+
+            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            {
+                string currentBudgetCategory = dataGridView2.Rows[i].Cells[0].Value.ToString();
+                double currentCategoryBudget = Convert.ToInt32(dataGridView2.Rows[i].Cells[1].Value);
+
+                categoriesBudgetList.Add(currentBudgetCategory);
+                categoryBudgetPriceList.Add(currentCategoryBudget);
+            }
+            for (int x = 0; x < categoriesThatExist.Count; ++x)
+            {
+                string categoryName = categoriesThatExist[x];
+                double categoryTotal = categoryTotals[x];
+                int idx = categoriesBudgetList.IndexOf(categoryName);
+                if (idx > -1)
+                {
+                    double categoryBudget = categoryBudgetPriceList[idx];
+                    if (categoryTotal > categoryBudget)
+                    {
+                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                        {
+                            if (dataGridView1.Rows[i].Cells[0].Value != null && dataGridView1.Rows[i].Cells[0].Value.ToString() == categoryName)
+                            {
+                                dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                            }
+                        }
+                    }
+                }
+
+            }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
             
-        }
 
 
 
@@ -197,8 +242,11 @@ namespace WindowsFormsApp1
             
         }
 
-       
-            private void addCategoryButton_Click(object sender, EventArgs e)
+        List<string> selectedCategories = new List<string>();
+
+        
+
+        private void addCategoryButton_Click(object sender, EventArgs e)
         {
             // Add a new category to the drop down list and enable the next row in the category column
             using (var inputBox = new InputBox("Enter the category:"))
@@ -208,8 +256,10 @@ namespace WindowsFormsApp1
                     string userInput = inputBox.UserInput;
                     categories.Add(userInput);
                     categoryList.Items.Add(userInput);
+                    CategoryNameBudgetComboBox.Items.Add(userInput); 
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["categoryList"].ReadOnly = false;
                     dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells["categoryList"].Style.BackColor = Color.White;
+                    
                 }
             }
             
@@ -228,56 +278,23 @@ namespace WindowsFormsApp1
                     dataGridView1.Rows[e.RowIndex].Cells["totalEstimatedValueColumn"].Value = totalEstimatedValueColumn.ToString();
                 }
             
-
             }
-
-
-
-
         }
 
-
-
-
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-               
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+        
         //Clear button
         private void clearEverythingButton_Click_1(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+             if (DialogResult.Yes == MessageBox.Show("Are you sure you want to clear everything!?", "Clear Everything", MessageBoxButtons.YesNo, MessageBoxIcon.Information)) 
             {
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    cell.Value = null;
-                }
+                dataGridView1.Rows.Clear();
+            } else
+            {
+                
             }
-            MessageBox.Show("Are you sure you want to clear everything!?");
+            
+            
+            
         }
 
         //Save Button 
@@ -342,7 +359,8 @@ namespace WindowsFormsApp1
             Close();
         }
 
-        private void loadButton_Click(object sender, EventArgs e)
+        //#region CLICKING LOAD BUTTON -<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        private void loadButton_Click(object sender, EventArgs e) 
         {
             dataGridView1.Rows.Clear();
             OpenFileDialog sfd = new OpenFileDialog();
@@ -371,13 +389,9 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        //#endregion
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+       
         //Trying to highlight the every row for which a category is selected.
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -401,6 +415,92 @@ namespace WindowsFormsApp1
                 }
             }
         }
+        //categories.Add(userInput);
+          //  categoryList.Items.Add(userInput);
+        List<CategoryItem> categorysBudgetList = new List<CategoryItem>();
+        
+        private void addCategoryBudget_Click(object sender, EventArgs e)
+        {
+            
+            bool CategoryExisted = false;
+            foreach (CategoryItem item in categorysBudgetList)
+            {
+                if (item.Category.ToLower().Trim() == CategoryNameBudgetComboBox.Text.ToLower().Trim())
+                {
+                    CategoryExisted = true;
+                    break;
+                }
+            }
+            if (!CategoryExisted)
+            {
+                CategoryItem item = new CategoryItem();
+                item.Category = CategoryNameBudgetComboBox.Text.Trim();
+                if (categoryPriceBudgetTextBox.Text == "")
+                    categoryPriceBudgetTextBox.Text = "0";
+                else
+                    item.Budget = Convert.ToInt32(categoryPriceBudgetTextBox.Text);
+                //item.Budget = Convert.ToInt32(categoryPriceBudgetTextBox.Text);
+                categorysBudgetList.Add(item);
+            }
+            else
+            {
+                CategoryItem item = categorysBudgetList.Find(x => x.Category.ToLower().Trim() == CategoryNameBudgetComboBox.Text.ToLower().Trim());
+                if (categoryPriceBudgetTextBox.Text == "")
+                    categoryPriceBudgetTextBox.Text = "0";
+                else
+                    item.Budget = Convert.ToInt32(categoryPriceBudgetTextBox.Text);
+                //item.Budget = Convert.ToInt32(categoryPriceBudgetTextBox.Text);
+            }
+
+            bool totalItemExisted = false;
+            double totalBudget = 0;
+            foreach (CategoryItem item in categorysBudgetList)
+            {
+                totalBudget += item.Category.ToLower().Trim() == "total" ? 0 : item.Budget;
+                if (item.Category.ToLower().Trim() == "total")
+                {
+                    totalItemExisted = true;
+                }
+            }
+            if (totalItemExisted)
+            {
+                CategoryItem removelitem = categorysBudgetList.Find(x => x.Category.ToLower().Trim() == "total");
+                categorysBudgetList.Remove(removelitem);
+            }
+            CategoryItem totalitem = new CategoryItem() { Category = "Total", Budget = totalBudget };
+            categorysBudgetList.Add(totalitem);
+
+            categoryPriceBudgetTextBox.Text = "";
+            dataGridView2.DataSource = null;
+            dataGridView2.DataSource = categorysBudgetList;
+            dataGridView2.ForeColor = Color.Black;
+            foreach (DataGridViewColumn col in dataGridView2.Columns)
+            {
+                col.HeaderCell.Style.Font = new Font("Arial", 16F, GraphicsUnit.Pixel);
+            }
+            dataGridView2.DefaultCellStyle.Font = new Font("Arial", 14F, GraphicsUnit.Pixel);
+        }
+
+        private void categoryPriceBudgetTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+    }
+
+    class CategoryItem
+    {
+        public string Category { get; set; }
+        public double Budget { get; set; }
     }
 }
 
