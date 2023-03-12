@@ -11,4 +11,4 @@ This project is a materials list estimator that lets you input items, unit price
 
 
 
-<img src="/useCaseImage/addingNewCategory.png" alt="Employee data" title="Employee Data title">
+[Imgur](https://i.imgur.com/xPQk1LU.png)
