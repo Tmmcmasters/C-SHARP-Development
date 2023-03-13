@@ -1,0 +1,17 @@
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final Exam Part Two.csproj.AssemblyReference.cache
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final_Exam_Part_Two.Form1.resources
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final Exam Part Two.csproj.GenerateResource.cache
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final Exam Part Two.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final Exam Part Two.AssemblyInfoInputs.cache
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final Exam Part Two.AssemblyInfo.cs
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final Exam Part Two.csproj.CoreCompileInputs.cache
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\bin\Debug\net6.0-windows\Final Exam Part Two.exe
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\bin\Debug\net6.0-windows\Final Exam Part Two.deps.json
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\bin\Debug\net6.0-windows\Final Exam Part Two.runtimeconfig.json
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\bin\Debug\net6.0-windows\Final Exam Part Two.dll
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\bin\Debug\net6.0-windows\Final Exam Part Two.pdb
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final Exam Part Two.dll
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\refint\Final Exam Part Two.dll
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final Exam Part Two.pdb
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\Final Exam Part Two.genruntimeconfig.cache
+C:\Users\tmmcm\OneDrive\Desktop\Software Development Classes(Transfer)\C# Development\Final Exam\Final Exam Part Two\obj\Debug\net6.0-windows\ref\Final Exam Part Two.dll
